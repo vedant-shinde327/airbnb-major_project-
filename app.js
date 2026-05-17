@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 import Listing from "./models/listing.js";
 import path from "path";
 import { fileURLToPath } from "url";
-
+import methodOverride from "method-override";
+import ejsMate from "ejs-mate";
 
 const app = express();
 
@@ -25,6 +26,7 @@ async function main() {
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 
 app.get("/",  (req, res) => {
     res.send("i love you sangita");
@@ -50,16 +52,44 @@ app.get("/listings", async (req, res) => {
 });
 
 //new route
-
 app.get("/listings/new", async (req, res) => {
-    res.render("/listings/new.ejs");
-});
-
+    let {id} = req.params;
+    const listng = await Listing.findById(id);;
+    res.render("listings/new.ejs");
+})
 //show routes
 app.get("/listings/:id", async (req, res) => {
     let {id} = req.params;
     const listing = await Listing.findById(id);
     res.render("listings/show.ejs", {listing}) 
+});
+
+//create route
+app.post("/listings", async (req, res) => {
+    const newListing = new Listing  (req.body.listing);
+    await newListing.save();   
+    res.redirect("/listings");  
+});
+
+//edit route
+app.get("/listings/:id/edit", async(req, res) => {
+    let {id} = req.params;
+    const listing = await Listing.findById(id);
+    res.render("listings/edit.ejs", {listing});
+});
+
+//update route
+app.put("/listings/:id", async (req, res) => {
+    let {id} =  req.params;
+    await Listing.findByIdAndUpdate(id, {...req.body.listing});
+    res.redirect(`/listings/${id}`);
+});
+
+//delete routes
+app.delete("/listings/:id", async (req, res) => {
+    let {id} = req.params;
+    await Listing.findByIdAndDelete(id);
+    res.redirect("/listings");
 });
 
 app.listen("3000", () => {
