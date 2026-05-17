@@ -6,6 +6,23 @@
     <title>WanderLust</title>
 </head>
 <body>
-    <h3>sanguu  </h3>
+
+    <h3>create a new listing</h3>
+
+    <form method="post" action="/listings">
+        <input type="text" name="listing[title]" placeholder="enter title" id="">
+        <br><br>
+        <textarea name="listing[description]" id="" placeholder="description"></textarea>
+        <br><br>
+        <input type="text" name="listing[image] placeholder="enter image url" id="">
+        <br><br>
+        <input type="number" name="listing[price] placeholder="enter price">
+        <br><br>
+        <input type="text" name="listing[country]" placeholder="enter your country" id="">
+        <br><br>
+        <input type="text" name="listing[location]" placeholder="enter your location">
+        <br><br>
+        <button>Add place</button>
+    </form>
 </body>
 </html>
