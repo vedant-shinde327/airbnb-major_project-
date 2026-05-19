@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import Listing from "./models/listing.js";
-import path from "path";
+import path, { join } from "path";
 import { fileURLToPath } from "url";
 import methodOverride from "method-override";
 import ejsMate from "ejs-mate";
@@ -27,6 +27,9 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use(express.static(path.join(__dirname, "/public")));
+app.engine('ejs', ejsMate);
+
 
 app.get("/",  (req, res) => {
     res.send("i love you sangita");
