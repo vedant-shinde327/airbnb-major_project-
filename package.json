@@ -20,7 +20,9 @@
   "homepage": "https://github.com/vedant-shinde327/airbnb-major_project-#readme",
   "dependencies": {
     "ejs": "^5.0.2",
+    "ejs-mate": "^4.0.0",
     "express": "^5.2.1",
+    "method-override": "^3.0.0",
     "mongoose": "^9.6.2"
   }
 }
