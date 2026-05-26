@@ -2,7 +2,7 @@
 
 <div class="row mt-3">
     <div class="col-8 offset-3">
-       <h3>Listing Details</h3>
+       <h3><b><%= listing.title%></b> <br></h3>
 </div>
   <div class="card col-6 offset-3 show-card">
     <img src="<%= listing.image.url %>" class="card-img-top show-img mb-3" alt="listing_image" />
@@ -23,4 +23,25 @@
     <button class="btn btn-dark  offset-2 mb-3">Delete</button>
   </form>
 </div>
+
+  <div class="col-8 offset-3">
+    <hr>
+    <H4>Leave a Review</H4>
+    <form action="/listings/<%= listing._id%>/reviews" method="post" novalidate class="needs-validation">
+      <div class="mb-3 mt-3">
+        <label for="rating" class="form-label">Rating</label>
+        <input type="range" name="review[rating]" min="1" max="5" id="rating" class="form-range" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="comment" class="form-label">Comments</label>
+        <textarea name="review[comment]" rows="5" cols="30" id="comment" class="form-control " required></textarea>
+
+        <div class="invalid-feedback">
+          Please add some comments for review
+        </div>
+      </div>
+      <button class="btn btn-outline-dark mb-3">Submit</button>
+    </form>
+  </div>
 </div>
