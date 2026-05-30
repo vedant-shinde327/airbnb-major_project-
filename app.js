@@ -8,6 +8,11 @@ import methodOverride from "method-override";
 import ejsMate from "ejs-mate";
 import ExpressError from "./utils/ExpressError.js";
 import cookieParser from "cookie-parser";
+import flash from "connect-flash";
+import session from "express-session";
+import passport from "passport";
+import LocalStrategy from "passport-local";
+import User from "./models/user.js";
 
 
 import listingRouter from "./routes/listings.js";
@@ -36,8 +41,35 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.engine("ejs", ejsMate);
 app.use(cookieParser());    
 
+const sessionOptions = {
+    secret: "mysupersecretcode",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        expires: 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+    }
+}
+
 app.get("/", (req, res) => {
-    res.send("i love you sangita");
+  res.send("i love you sangita");
+});
+
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
 });
 
 //listings
