@@ -13,10 +13,11 @@ import session from "express-session";
 import passport from "passport";
 import LocalStrategy from "passport-local";
 import User from "./models/user.js";
-
+import pkg from "passport-local-mongoose";
 
 import listingRouter from "./routes/listings.js";
 import reviewRouter from "./routes/review.js";
+import userRouter from "./routes/user.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -74,9 +75,10 @@ app.use((req, res, next) => {
 
 //listings
 app.use("/listings", listingRouter);
-
 // reviews
 app.use("/listings/:id/reviews", reviewRouter);
+//userrouter
+app.use("/", userRouter);
 
 //errs
 app.use((req, res, next) => {
