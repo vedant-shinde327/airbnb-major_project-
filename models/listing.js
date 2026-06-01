@@ -1,5 +1,6 @@
 import mongoose, { trusted } from "mongoose";
 import Review from "./review.js";
+import User from "./user.js";
 
 const schema = mongoose.Schema;
 
@@ -13,10 +14,10 @@ const listingSchema = new schema({
   },
   image: {
     filename: {
-        type: String,
-        default: "listingimage",
+      type: String,
+      default: "listingimage",
     },
-    
+
     url: {
       type: String,
       default: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
@@ -36,8 +37,12 @@ const listingSchema = new schema({
     {
       type: schema.Types.ObjectId,
       ref: "review",
-    }
-  ]
+    },
+  ],
+  owner: {
+    type: schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 listingSchema.post("findOneAndDelete", async(listing) => {

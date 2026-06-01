@@ -1,5 +1,6 @@
 import mongoose, { Schema, trusted } from "mongoose";
 const schema = mongoose.Schema;
+import User from "./user.js";
 
 const reviewSchema = new Schema({
     comment: String,
@@ -11,6 +12,10 @@ const reviewSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now() 
+    },
+    author: {
+        type: schema.Types.ObjectId,
+        ref: "User",
     }
 });
 
