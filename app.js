@@ -1,4 +1,5 @@
 import express from "express";
+import "./cloudConfig.js";
 const app = express();
 
 import mongoose from "mongoose";
@@ -23,15 +24,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 main()
-    .then(() => {
-        console.log("connected to db");
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+  .then(() => {
+    console.log("connected to db");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 async function main() {
-    await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
+  await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
 }
 
 app.set("view engine", "ejs");
@@ -40,18 +41,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
 app.engine("ejs", ejsMate);
-app.use(cookieParser());    
+app.use(cookieParser());
 
 const sessionOptions = {
-    secret: "mysupersecretcode",
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        expires: 7 * 24 * 60 * 60 * 1000,
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
-    }
-}
+  secret: "mysupersecretcode",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    expires: 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+  },
+};
 
 app.get("/", (req, res) => {
   res.send("i love you sangita");
@@ -68,10 +69,10 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
-    res.locals.success = req.flash("success");
-    res.locals.error = req.flash("error");
-    res.locals.currUser = req.user;
-    next();
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.currUser = req.user;
+  next();
 });
 
 //listings
@@ -83,14 +84,14 @@ app.use("/", userRouter);
 
 //errs
 app.use((req, res, next) => {
-    next(new ExpressError(404, "Page not found"));
+  next(new ExpressError(404, "Page not found"));
 });
 
 app.use((err, req, res, next) => {
-    let{status = 500, message = "something went wrong"} = err;
-    res.status(status).render("error.ejs", {err});
- });
+  let { status = 500, message = "something went wrong" } = err;
+  res.status(status).render("error.ejs", { err });
+});
 
 app.listen("3000", () => {
-    console.log("Server is running");
+  console.log("Server is running");
 });
