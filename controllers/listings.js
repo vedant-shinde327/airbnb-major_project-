@@ -1,4 +1,8 @@
 import Listing from "../models/listing.js";
+import mbxGeocoding from "@mapbox/mapbox-sdk/services/geocoding.js";
+
+const mapToken = process.env.MAP_TOKEN;
+const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 export const index = async (req, res) => {
   const allListing = await Listing.find({});
@@ -24,6 +28,13 @@ export const showListing = (async (req, res) => {
 });
 
 export const createListing = (async (req, res, next) => {
+  let response = await geocodingClient
+    .forwardGeocode({
+      query: req.body.listing.location,
+      limit: 1,
+    })
+    .send();
+
   let url = req.file.path;
   let filename = req.file.filename;
 
@@ -31,7 +42,9 @@ export const createListing = (async (req, res, next) => {
   newListing.owner = req.user._id;
   newListing.image = { url, filename };
 
-  await newListing.save();
+  newListing.geometry = response.body.features[0].geometry;
+
+  let savedListing = await newListing.save();
 
   req.flash("success", "New Listing Created");
 
