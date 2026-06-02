@@ -123,3 +123,10 @@ body {
   object-fit: cover;
   border-radius: 10px;
 }
+
+/* map */
+
+#map {
+    height: 60vh;
+    width: 750px;
+}
