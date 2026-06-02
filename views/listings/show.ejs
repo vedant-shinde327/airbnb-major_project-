@@ -1,5 +1,10 @@
 <% layout("/layouts/boilerplate") %>
 
+<script>
+  const mapToken = "<%= process.env.MAP_TOKEN %>"
+  const coordinates = <%- JSON.stringify(listing.geometry.coordinates) %>
+</script>
+
   <div class="row mt-3">
     <div class="col-8 offset-3">
       <h3><b>
@@ -78,36 +83,42 @@
             <hr>
             <% } %>
 
-              <p><b>All Reviews</b></p>
-              <div class="row">
-                <% for (review of listing.reviews) { %>
-                  <div class="card col-5 ms-3 mb-3">
-                    <div class="card-body">
-                      <h5 class="card-title"><i class="fa-solid fa-user"></i>
-                        <%= review.author.username %>
-                      </h5>
+              <% if(listing.reviews.length> 0) {%>
+                <div class="row">
+                  <p><b>All Reviews</b></p>
+                  <% for (review of listing.reviews) { %>
+                    <div class="card col-5 ms-3 mb-3">
+                      <div class="card-body">
+                        <h5 class="card-title"><i class="fa-solid fa-user"></i>
+                          <%= review.author.username %>
+                        </h5>
 
-                      <p class="starability-result" data-rating="<%= review.rating %>">
+                        <p class="starability-result" data-rating="<%= review.rating %>">
 
-                      </p>
+                        </p>
 
-                      <p class="card-text">
-                        <%= review.comment%>
-                      </p>
+                        <p class="card-text">
+                          <%= review.comment%>
+                        </p>
 
+                      </div>
+                      <form action="/listings/<%= listing._id%>/reviews/<%= review._id %>?_method=DELETE" class="mb-3"
+                        method="post">
+                        <button class="btn btn-sm btn-dark">Delete</button>
+                      </form>
                     </div>
-                    <form action="/listings/<%= listing._id%>/reviews/<%= review._id %>?_method=DELETE" class="mb-3"
-                      method="post">
-                      <button class="btn btn-sm btn-dark">Delete</button>
-                    </form>
-                  </div>
-                  <% } %>
-              </div>
+                    <% } %>
+                </div>
+                <% } %>
         </div>
+
         <div class="col-8 offset-3 mb-3">
           <h3>Where you'll be</h3>
-          <div id="map">
-            
-          </div>
+
+          <div id="map"></div>
+
         </div>
   </div>
+  </div>
+
+<script src="/js/map.js"></script>
