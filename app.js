@@ -2,6 +2,9 @@ import express from "express";
 import "./cloudConfig.js";
 const app = express();
 
+import dns from "node:dns";
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
+
 import mongoose from "mongoose";
 import path, { join } from "path";
 import { fileURLToPath } from "url";
@@ -11,6 +14,7 @@ import ExpressError from "./utils/ExpressError.js";
 import cookieParser from "cookie-parser";
 import flash from "connect-flash";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 import passport from "passport";
 import LocalStrategy from "passport-local";
 import User from "./models/user.js";
@@ -23,6 +27,8 @@ import userRouter from "./routes/user.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const dbUrl = process.env.ATLASDB_URL;
+
 main()
   .then(() => {
     console.log("connected to db");
@@ -32,7 +38,7 @@ main()
   });
 
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
+  await mongoose.connect(dbUrl);
 }
 
 app.set("view engine", "ejs");
@@ -43,8 +49,21 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.engine("ejs", ejsMate);
 app.use(cookieParser());
 
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  crypto: {
+    secret: process.env.SECRET,
+  },
+  touchAfter: 24 * 3600,
+});
+
+store.on("error", () => {
+  console.log("ERROR in the MONGO SESSION STORE", err);
+});
+
 const sessionOptions = {
-  secret: "mysupersecretcode",
+  store,
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -53,10 +72,6 @@ const sessionOptions = {
     httpOnly: true,
   },
 };
-
-// app.get("/", (req, res) => {
-//   res.send("i love you sangita");
-// });
 
 app.use(session(sessionOptions));
 app.use(flash());
