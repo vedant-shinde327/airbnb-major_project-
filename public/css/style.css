@@ -308,289 +308,197 @@ body {
 
 
 /* ==========================================================
-   RESPONSIVE DESIGN
+   BOOTSTRAP RESPONSIVE OVERRIDES
 ========================================================== */
 
-/* ---------- Large Tablets ---------- */
-@media (max-width: 992px) {
-
-    .navbar {
-        height: auto;
-        padding: .75rem 1rem;
-    }
-
-    .search-form {
-        width: 100%;
-        justify-content: center;
-        margin-top: 1rem;
-    }
-
-    .search-inp {
-        width: 100%;
-        max-width: 450px;
-    }
-
-    #filters {
-        justify-content: center;
-        gap: 1rem;
-    }
-
-    .filter {
-        margin: 0;
-    }
-
-    .tax-toggle {
-        margin-top: 1rem;
-        margin-left: 0;
-    }
-
-    .show-img {
-        height: 24rem;
-    }
-
-    #map {
-        max-width: 100%;
-        height: 400px;
-    }
-
-    .btns {
-        flex-wrap: wrap;
-    }
-}
-
-/* ---------- Tablets ---------- */
 @media (max-width: 768px) {
 
-    .container {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
+  /* General */
+  .container,
+  .container-fluid {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
 
-    .navbar {
-        padding: .75rem;
-    }
+  /* Navbar */
+  .navbar {
+    height: auto !important;
+    padding: 0.75rem 1rem !important;
+  }
 
-    .navbar-brand {
-        font-size: 1.2rem;
-    }
+  .navbar-brand {
+    font-size: 1rem;
+  }
 
-    .nav-logo {
-        width: 42px;
-        height: 42px;
-    }
+  .nav-logo {
+    width: 40px !important;
+    height: 40px !important;
+  }
 
-    /* Search */
+  .navbar-collapse {
+    margin-top: 1rem;
+  }
 
-    .search-form {
-        width: 100%;
-        flex-direction: column;
-        gap: .75rem;
-    }
+  .navbar-nav {
+    gap: 0.5rem;
+  }
 
-    .search-inp,
-    .search-form .search-inp {
-        width: 100%;
-        max-width: none;
-    }
+  /* Search */
+  .search-form {
+    width: 100% !important;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 
-    .btn-search,
-    .search-form .btn-search {
-        width: 100%;
-        justify-content: center;
-        margin-left: 0;
-    }
+  .search-form .search-inp,
+  .search-form .btn-search {
+    width: 100% !important;
+    max-width: 100%;
+    margin: 0 !important;
+  }
 
-    /* Filters */
+  /* Bootstrap column overrides */
+  [class*="offset-"] {
+    margin-left: 0 !important;
+  }
 
-    #filters {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        gap: 1rem;
-        padding-bottom: .5rem;
-        justify-content: flex-start;
-        scrollbar-width: none;
-    }
+  .col-8,
+  .col-7,
+  .col-6,
+  .col-5,
+  .col-4,
+  .col-3,
+  .col-2,
+  .col-1 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+  }
 
-    #filters::-webkit-scrollbar {
-        display: none;
-    }
+  /* Cards */
+  .listing-card {
+    width: 100% !important;
+  }
 
-    .filter {
-        flex: 0 0 auto;
-        margin: 0;
-    }
+  .card-img-top {
+    height: 220px !important;
+  }
 
-    .tax-toggle {
-        flex: 0 0 auto;
-        white-space: nowrap;
-    }
+  /* Filters */
+  #filters {
+    display: flex;
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    align-items: center;
+    scrollbar-width: none;
+  }
 
-    /* Cards */
+  #filters::-webkit-scrollbar {
+    display: none;
+  }
 
-    .listing-card {
-        margin-bottom: 1.5rem;
-    }
+  #filters a {
+    flex: 0 0 auto;
+    text-decoration: none;
+  }
 
-    .card-img-top {
-        height: 220px !important;
-    }
+  .filter {
+    margin: 0 !important;
+    min-width: 70px;
+    text-align: center;
+  }
 
-    /* Show Page */
+  .filter p {
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+  }
 
-    .show-img {
-        height: 18rem;
-    }
+  .tax-toggle {
+    flex: 0 0 auto;
+    margin-left: 0 !important;
+    white-space: nowrap;
+    font-size: 0.85rem;
+  }
 
-    .btns {
-        flex-direction: column;
-    }
+  /* Buttons */
+  .btn,
+  .btn-search,
+  .add-btn {
+    width: 100%;
+  }
 
-    .btns .btn {
-        width: 100%;
-    }
+  .btns {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 
-    /* Forms */
+  /* Forms */
+  form {
+    width: 100%;
+  }
 
-    .preview-img {
-        width: 100%;
-        max-width: 320px;
-        height: auto;
-    }
+  .preview-img {
+    width: 100%;
+    height: auto;
+  }
 
-    /* Footer */
+  /* Map */
+  #map {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 300px !important;
+  }
 
-    .f-info {
-        min-height: auto;
-        padding: 1.5rem 1rem;
-    }
+  /* Footer */
+  .f-info {
+    height: auto;
+    padding: 1rem;
+  }
 
-    .f-info-links,
-    .f-info-socials,
-    .f-info-brand {
-        margin: .4rem 0;
-    }
-
-    /* Map */
-
-    #map {
-        height: 320px;
-    }
+  .f-info-links,
+  .f-info-socials,
+  .f-info-brand {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
 }
 
-/* ---------- Mobile ---------- */
-@media (max-width: 576px) {
+/* Small phones */
+@media (max-width: 480px) {
 
-    body {
-        font-size: .95rem;
-    }
+  body {
+    font-size: 14px;
+  }
 
-    .container {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
+  .card-img-top {
+    height: 190px !important;
+  }
 
-    .navbar-brand {
-        font-size: 1rem;
-    }
+  .show-img {
+    height: 220px !important;
+  }
 
-    .nav-logo {
-        width: 38px;
-        height: 38px;
-    }
+  .nav-logo {
+    width: 36px !important;
+    height: 36px !important;
+  }
 
-    .search-form {
-        gap: .6rem;
-    }
+  .filter {
+    min-width: 60px;
+  }
 
-    .search-form .btn-search {
-        padding: .7rem !important;
-    }
+  .filter i {
+    font-size: 1rem;
+  }
 
-    #filters {
-        gap: .8rem;
-    }
+  .filter p {
+    font-size: 0.75rem;
+  }
 
-    .filter {
-        font-size: .85rem;
-    }
-
-    .filter i {
-        font-size: 1.1rem;
-    }
-
-    .tax-toggle {
-        font-size: .8rem;
-        padding: .6rem .8rem;
-    }
-
-    .card-img-top {
-        height: 200px !important;
-    }
-
-    .show-img {
-        height: 15rem;
-    }
-
-    .preview-img {
-        max-width: 100%;
-    }
-
-    #map {
-        height: 260px;
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-
-    h2 {
-        font-size: 1.7rem;
-    }
-
-    h3 {
-        font-size: 1.4rem;
-    }
-
-    .btn,
-    .btn-search,
-    .add-btn {
-        width: 100%;
-    }
-}
-
-/* ---------- Extra Small Phones ---------- */
-@media (max-width: 400px) {
-
-    .navbar-brand {
-        font-size: .9rem;
-    }
-
-    .nav-logo {
-        width: 34px;
-        height: 34px;
-    }
-
-    .card-img-top {
-        height: 180px !important;
-    }
-
-    .show-img {
-        height: 12rem;
-    }
-
-    .filter p {
-        font-size: .75rem;
-    }
-
-    .search-inp {
-        font-size: .9rem;
-    }
-
-    .btn-search {
-        font-size: .9rem;
-    }
-
-    .tax-toggle {
-        font-size: .75rem;
-    }
+  .tax-toggle {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+  }
 }
