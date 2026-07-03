@@ -307,148 +307,290 @@ body {
 }
 
 
-/* ---------- Mobile (≤ 768px) ---------- */
-@media (max-width: 768px) {
+/* ==========================================================
+   RESPONSIVE DESIGN
+========================================================== */
 
-  .container {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
+/* ---------- Large Tablets ---------- */
+@media (max-width: 992px) {
 
-  .nav-logo {
-    width: 42px;
-    height: 42px;
-  }
+    .navbar {
+        height: auto;
+        padding: .75rem 1rem;
+    }
 
-  .navbar-brand {
-    font-size: 1.2rem;
-  }
+    .search-form {
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+    }
 
-  .search-form {
-    flex-direction: column;
-    width: 100%;
-    gap: 0.75rem;
-    margin-top: 1rem;
-  }
+    .search-inp {
+        width: 100%;
+        max-width: 450px;
+    }
 
-  .search-form .search-inp {
-    width: 100%;
-    max-width: none;
-  }
+    #filters {
+        justify-content: center;
+        gap: 1rem;
+    }
 
-  .search-form .btn-search {
-    width: 100%;
-    justify-content: center;
-    margin-left: 0;
-  }
+    .filter {
+        margin: 0;
+    }
 
-  #filters {
-    justify-content: flex-start;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    gap: 1rem;
-    padding-bottom: 0.5rem;
-    scrollbar-width: none;
-  }
+    .tax-toggle {
+        margin-top: 1rem;
+        margin-left: 0;
+    }
 
-  #filters::-webkit-scrollbar {
-    display: none;
-  }
+    .show-img {
+        height: 24rem;
+    }
 
-  .filter {
-    flex: 0 0 auto;
-    margin: 0;
-  }
+    #map {
+        max-width: 100%;
+        height: 400px;
+    }
 
-  .tax-toggle {
-    flex: 0 0 auto;
-    margin-left: 0.5rem;
-    white-space: nowrap;
-  }
-
-  .listing-card {
-    margin-bottom: 1.5rem;
-  }
-
-  .card-img-top {
-    height: 220px !important;
-  }
-
-  .preview-img {
-    width: 100%;
-    max-width: 320px;
-    height: auto;
-  }
-
-  #map {
-    width: 100%;
-    height: 300px;
-  }
-
-  .btns {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .btns .btn {
-    width: 100%;
-  }
-
-  .f-info {
-    height: auto;
-    padding: 1rem 0;
-  }
-
-  .f-info-links,
-  .f-info-socials,
-  .f-info-brand {
-    margin: 0.5rem 0;
-  }
+    .btns {
+        flex-wrap: wrap;
+    }
 }
 
+/* ---------- Tablets ---------- */
+@media (max-width: 768px) {
 
-/* ---------- Small Mobile (≤ 576px) ---------- */
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .navbar {
+        padding: .75rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .nav-logo {
+        width: 42px;
+        height: 42px;
+    }
+
+    /* Search */
+
+    .search-form {
+        width: 100%;
+        flex-direction: column;
+        gap: .75rem;
+    }
+
+    .search-inp,
+    .search-form .search-inp {
+        width: 100%;
+        max-width: none;
+    }
+
+    .btn-search,
+    .search-form .btn-search {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+    }
+
+    /* Filters */
+
+    #filters {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 1rem;
+        padding-bottom: .5rem;
+        justify-content: flex-start;
+        scrollbar-width: none;
+    }
+
+    #filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filter {
+        flex: 0 0 auto;
+        margin: 0;
+    }
+
+    .tax-toggle {
+        flex: 0 0 auto;
+        white-space: nowrap;
+    }
+
+    /* Cards */
+
+    .listing-card {
+        margin-bottom: 1.5rem;
+    }
+
+    .card-img-top {
+        height: 220px !important;
+    }
+
+    /* Show Page */
+
+    .show-img {
+        height: 18rem;
+    }
+
+    .btns {
+        flex-direction: column;
+    }
+
+    .btns .btn {
+        width: 100%;
+    }
+
+    /* Forms */
+
+    .preview-img {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+    }
+
+    /* Footer */
+
+    .f-info {
+        min-height: auto;
+        padding: 1.5rem 1rem;
+    }
+
+    .f-info-links,
+    .f-info-socials,
+    .f-info-brand {
+        margin: .4rem 0;
+    }
+
+    /* Map */
+
+    #map {
+        height: 320px;
+    }
+}
+
+/* ---------- Mobile ---------- */
 @media (max-width: 576px) {
 
-  h1 {
-    font-size: 2rem;
-  }
+    body {
+        font-size: .95rem;
+    }
 
-  h2 {
-    font-size: 1.75rem;
-  }
+    .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
 
-  h3 {
-    font-size: 1.5rem;
-  }
+    .navbar-brand {
+        font-size: 1rem;
+    }
 
-  .card-img-top {
-    height: 200px !important;
-  }
+    .nav-logo {
+        width: 38px;
+        height: 38px;
+    }
 
-  .show-img {
-    height: 220px;
-  }
+    .search-form {
+        gap: .6rem;
+    }
 
-  .navbar-brand {
-    font-size: 1.1rem;
-  }
+    .search-form .btn-search {
+        padding: .7rem !important;
+    }
 
-  .nav-logo {
-    width: 38px;
-    height: 38px;
-  }
+    #filters {
+        gap: .8rem;
+    }
 
-  .search-form .btn-search {
-    padding: 10px 16px !important;
-  }
+    .filter {
+        font-size: .85rem;
+    }
 
-  .tax-toggle {
-    font-size: 0.85rem;
-    padding: 10px;
-  }
+    .filter i {
+        font-size: 1.1rem;
+    }
 
-  .preview-img {
-    max-width: 100%;
-  }
+    .tax-toggle {
+        font-size: .8rem;
+        padding: .6rem .8rem;
+    }
+
+    .card-img-top {
+        height: 200px !important;
+    }
+
+    .show-img {
+        height: 15rem;
+    }
+
+    .preview-img {
+        max-width: 100%;
+    }
+
+    #map {
+        height: 260px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.7rem;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+    }
+
+    .btn,
+    .btn-search,
+    .add-btn {
+        width: 100%;
+    }
+}
+
+/* ---------- Extra Small Phones ---------- */
+@media (max-width: 400px) {
+
+    .navbar-brand {
+        font-size: .9rem;
+    }
+
+    .nav-logo {
+        width: 34px;
+        height: 34px;
+    }
+
+    .card-img-top {
+        height: 180px !important;
+    }
+
+    .show-img {
+        height: 12rem;
+    }
+
+    .filter p {
+        font-size: .75rem;
+    }
+
+    .search-inp {
+        font-size: .9rem;
+    }
+
+    .btn-search {
+        font-size: .9rem;
+    }
+
+    .tax-toggle {
+        font-size: .75rem;
+    }
 }
