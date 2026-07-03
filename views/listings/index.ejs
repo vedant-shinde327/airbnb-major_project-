@@ -1,113 +1,112 @@
 <% layout("/layouts/boilerplate") %>
 
-    <style>
-        #filters {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .filter {
-            text-align: center;
-            margin-top: 2rem;
-            margin-right: 2rem;
-            opacity: 0.6;
-        }
-
-        .filter:hover {
-            opacity: 1;
-            cursor: pointer;
-        }
-
-        .tax-toggle {
-            border: 1px solid black;
-            border-radius: 2rem;
-            height: 2.5rem;
-            padding: 1rem;
-            margin-left: 2rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .tax-info {
-            display: none;
-        }
-    </style>
-
     <div id="filters">
-        <div class="filter">
-            <div>
-                <i class="fa-solid fa-fire"></i>
-            </div>
-            <p>Trending</p>
-        </div>
 
-        <div class="filter">
-            <div>
-                <i class="fa-solid fa-bed"></i>
+        <a href="/listings" class="text-decoration-none">
+            <div class="filter <%= selectedCategory === "" ? " active-filter" : "" %>">
+                <div>
+                    <i class="fa-solid fa-border-all"></i>
+                </div>
+                <p>All</p>
             </div>
-            <p>Rooms</p>
-        </div>
+        </a>
 
-        <div class="filter">
-            <div>
-                <i class="fa-solid fa-city"></i>
+        <a href="/listings?category=Trending" class="text-decoration-none">
+            <div class="filter <%= selectedCategory === " Trending" ? "active-filter" : "" %>">
+                <div>
+                    <i class="fa-solid fa-fire"></i>
+                </div>
+                <p>Trending</p>
             </div>
-            <p>Iconic Cities</p>
-        </div>
+        </a>
 
-        <div class="filter">
-            <div>
-                <i class="fa-solid fa-mountain"></i>
+        <a href="/listings?category=Rooms" class="text-decoration-none">
+            <div class="filter <%= selectedCategory === " Rooms" ? "active-filter" : "" %>">
+                <div>
+                    <i class="fa-solid fa-bed"></i>
+                </div>
+                <p>Rooms</p>
             </div>
-            <p>Mountains</p>
-        </div>
+        </a>
 
-        <div class="filter">
-            <div>
-                <i class="fa-solid fa-person-swimming"></i>
+        <a href="/listings?category=Iconic%20Cities" class="text-decoration-none">
+            <div class="filter <%= selectedCategory === " Iconic Cities" ? "active-filter" : "" %>">
+                <div>
+                    <i class="fa-solid fa-city"></i>
+                </div>
+                <p>Iconic Cities</p>
             </div>
-            <p>Amazing Pools</p>
-        </div>
+        </a>
 
-        <div class="filter">
-            <div>
-                <i class="fa-solid fa-campground"></i>
+        <a href="/listings?category=Mountains" class="text-decoration-none">
+            <div class="filter <%= selectedCategory === " Mountains" ? "active-filter" : "" %>">
+                <div>
+                    <i class="fa-solid fa-city"></i>
+                </div>
+                <p>Mountains</p>
             </div>
-            <p>Campaign</p>
-        </div>
+        </a>
 
-        <div class="filter">
-            <div>
-                <i class="fa-solid fa-cow   "></i>
+        <a href="/listings?category=Amazing%20Pools" class="text-decoration-none">
+            <div class="filter <%= selectedCategory === " Amazing Pools" ? "active-filter" : "" %>">
+                <div>
+                    <i class="fa-solid fa-city"></i>
+                </div>
+                <p>Amazing Pools</p>
             </div>
-            <p>Farms</p>
-        </div>
+        </a>
 
-        <div class="filter">
-            <div>
-                <i class="fa-solid fa-snowflake "></i>
+        <a href="/listings?category=Camping" class="text-decoration-none">
+            <div class="filter <%= selectedCategory === " Camping" ? "active-filter" : "" %>">
+                <div>
+                    <i class="fa-solid fa-city"></i>
+                </div>
+                <p>Camping</p>
             </div>
-            <p>Arctic</p>
-        </div>
+        </a>
+
+        <a href="/listings?category=Farms" class="text-decoration-none">
+            <div class="filter <%= selectedCategory === " Farms" ? "active-filter" : "" %>">
+                <div>
+                    <i class="fa-solid fa-city"></i>
+                </div>
+                <p>Farms</p>
+            </div>
+        </a>
+
+        <a href="/listings?category=Arctic" class="text-decoration-none">
+            <div class="filter <%= selectedCategory === " Arctic" ? "active-filter" : "" %>">
+                <div>
+                    <i class="fa-solid fa-city"></i>
+                </div>
+                <p>Arctic</p>
+            </div>
+        </a>
 
         <div class="tax-toggle">
             <div class="form-check-reverse form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
-                <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+                <label class="form-check-label" for="switchCheckDefault">
+                    Display total after taxes
+                </label>
             </div>
         </div>
+
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-3">
 
-        <% for(let listing of allListing) { %>
+        <% for (const listing of allListing) { const imageUrl=listing.image.url.replace( "/upload"
+            , "/upload/w_500,h_350,c_fill,f_auto,q_auto" ); const formattedPrice=listing.price.toLocaleString("en-IN");
+            %>
+
             <a href="/listings/<%= listing._id %>" class="listing">
 
                 <div class="card col listing-card">
                     <div class="card h-100 listing-card">
-                        <img src="<%= listing.image.url %>" class="card-img-top"
-                            style="height: 16rem; object-fit: cover;" alt="listing_image">
+
+                        <img src="<%= imageUrl %>" class="card-img-top" style="height:16rem;object-fit:cover;"
+                            alt="listing_image">
 
                         <div class="card-img-overlay"></div>
 
@@ -115,28 +114,50 @@
                             <p class="card-text">
                                 <b>
                                     <%= listing.title %>
-                                </b><br>
-                                &#8377;<%= listing.price.toLocaleString("en-IN") %>
-                                    <i class="tax-info">&nbsp; &nbsp;+18% GST</i>
+                                </b>
+                                <br>
+                                <span class="listing-price" data-price="<%= listing.price %>">
+                                    ₹<%= formattedPrice %>
+                                </span>
+
+                                <i class="tax-info" style="display: none;">
+                                    (Incl. 18% GST)
+                                </i>
                             </p>
                         </div>
+
                     </div>
                 </div>
+
             </a>
 
             <% } %>
+
     </div>
 
     <script>
-        let taxSwitch = document.getElementById("switchCheckDefault");
-        taxSwitch.addEventListener("click", () => {
-            let taxInfo = document.getElementsByClassName("tax-info");
-            for (info of taxInfo) {
-                if(info.style.display != "inline") {
-                    info.style.display = "inline";
-                } else {
-                    info.style.display = "none";
-                }
-            }
+        const GST_RATE = 0.18;
+
+        const taxSwitch = document.getElementById("switchCheckDefault");
+        const prices = document.querySelectorAll(".listing-price");
+        const taxInfo = document.querySelectorAll(".tax-info");
+
+        taxSwitch.addEventListener("change", () => {
+            const showGST = taxSwitch.checked;
+
+            prices.forEach((priceElement) => {
+                const originalPrice = Number(priceElement.dataset.price);
+
+                const displayPrice = showGST
+                    ? Math.round(originalPrice * (1 + GST_RATE))
+                    : originalPrice;
+
+                priceElement.textContent =
+                    `₹${displayPrice.toLocaleString("en-IN")}`;
+            });
+
+            taxInfo.forEach((info) => {
+                info.style.display = showGST ? "inline" : "none";
+            });
         });
     </script>

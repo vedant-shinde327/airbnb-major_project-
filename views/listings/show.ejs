@@ -1,9 +1,9 @@
 <% layout("/layouts/boilerplate") %>
 
-<script>
-  const mapToken = "<%= process.env.MAP_TOKEN %>"
-  const coordinates = <%- JSON.stringify(listing.geometry.coordinates) %>
-</script>
+  <script>
+    const mapToken = "<%= process.env.MAP_TOKEN %>"
+    const coordinates = <% - JSON.stringify(listing.geometry.coordinates) %>
+  </script>
 
   <div class="row mt-3">
     <div class="col-8 offset-3">
@@ -12,7 +12,8 @@
         </b> <br></h3>
     </div>
     <div class="card col-6 offset-3 show-card listing-card">
-      <img src="<%= listing.image.url %>" class="card-img-top show-img mb-3" alt="listing_image" />
+      <img src="<%= listing.image.url.replace('/upload','/upload/w_900,c_fill,f_auto,q_auto') %>" loading="lazy"
+        class="card-img-top show-img mb-3" alt="listing_image" />
       <div class="card-body ">
         <p class="card-text"><b><i class="fa-solid fa-user"></i>
             <%= listing.owner.username %>
@@ -20,6 +21,10 @@
 
         <p class="card-text">
           <%= listing.description%>
+        </p>
+
+        <p class="card-text">
+          <%= listing.category%>
         </p>
 
         <p class="card-text">&#8377;<%= listing.price.toLocaleString("en-IN")%>
@@ -121,4 +126,4 @@
   </div>
   </div>
 
-<script src="/js/map.js"></script>
+  <script src="/js/map.js"></script>

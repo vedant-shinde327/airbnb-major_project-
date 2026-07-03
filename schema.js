@@ -8,6 +8,7 @@ const listingSchema = Joi.object({
     country: Joi.string().required(),
     price: Joi.number().required().min(0),
     image: Joi.allow(),
+    category: Joi.string().required(),
   }).required(),
 });
 

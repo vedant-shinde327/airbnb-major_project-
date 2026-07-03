@@ -19,6 +19,7 @@ import passport from "passport";
 import LocalStrategy from "passport-local";
 import User from "./models/user.js";
 import pkg from "passport-local-mongoose";
+import compression from "compression";
 
 import listingRouter from "./routes/listings.js";
 import reviewRouter from "./routes/review.js";
@@ -48,6 +49,7 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
 app.engine("ejs", ejsMate);
 app.use(cookieParser());
+app.use(compression());
 
 const store = MongoStore.create({
   mongoUrl: dbUrl,
@@ -87,6 +89,7 @@ app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   res.locals.currUser = req.user;
+  res.locals.searchQuery = req.query.search || "";
   next();
 });
 

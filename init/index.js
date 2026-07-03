@@ -2,9 +2,7 @@ import mongoose, { trusted } from "mongoose";
 import initData from "./data.js";
 import Listing from "../models/listing.js";
 import dotenv from "dotenv";
-dotenv.config({ path: "../.env" });
-
-console.log(process.env.MAP_TOKEN);
+dotenv.config({ path: "../.env" }); 
 
 import mbxGeocoding from "@mapbox/mapbox-sdk/services/geocoding.js";
 
@@ -21,7 +19,7 @@ main()
   });
 
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
+  await mongoose.connect(process.env.ATLASDB_URL);
 };
 
 const initDB = async () => {

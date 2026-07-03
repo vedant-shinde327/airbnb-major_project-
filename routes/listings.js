@@ -1,22 +1,20 @@
 import express from "express";
-const router = express.Router();
-import Listing from "../models/listing.js";
-import wrapAsync from "../utils/wrapAsync.js";
-import review from "../models/review.js";
-import { isLoggedIn, isOwner, validateListing } from "../middleware.js";
-import User from "../models/user.js";
+import multer from "multer";
+
+import { storage } from "../cloudConfig.js";
 import {
   createListing,
+  deleteListing,
+  editListing,
   index,
   renderNewForm,
   showListing,
-  editListing,
   updateListing,
-  deleteListing,
 } from "../controllers/listings.js";
-import multer from "multer";
-import {cloudinary, storage} from '../cloudConfig.js';
+import { isLoggedIn, isOwner, validateListing } from "../middleware.js";
+import wrapAsync from "../utils/wrapAsync.js";
 
+const router = express.Router();
 const upload = multer({ storage });
 
 router
@@ -27,9 +25,9 @@ router
     validateListing,
     upload.single("listing[image]"),
     wrapAsync(createListing),
-);
+  );
 
-  //new route
+// New route
 router.get("/new", isLoggedIn, wrapAsync(renderNewForm));
 
 router
@@ -45,7 +43,7 @@ router
   )
   .delete(isLoggedIn, isOwner, wrapAsync(deleteListing));
 
-//edit route
+// Edit route
 router.get("/:id/edit", isLoggedIn, isOwner, wrapAsync(editListing));
 
 export default router;

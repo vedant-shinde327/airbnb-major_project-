@@ -22,6 +22,27 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="description" class="form-label">Select Categ</label>
+                    <select class="form-select" name="listing[category]" id="floatingSelectGrid">
+                        <option value= "" selected disabled>Select category of your Place</option>
+                        <option value="Trending">Trending</option>
+                        <option value="Rooms">Rooms</option>
+                        <option value="Iconic Cities">Iconic Cities</option>
+                        <option value="Mountains">Mountains</option>
+                        <option value="Amazing Pools">Amazing Pools</option>
+                        <option value="Camping">Camping</option>
+                        <option value="Farms">Farms</option>
+                        <option value="Arctic">Arctic</option>
+                    </select>
+
+
+                    <div class="invalid-feedback">
+                        Please enter short description
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
                     <label for="image" class="form-label">Upload Image</label>
                     <input type="file" name="listing[image]" class="form-control">
                 </div>

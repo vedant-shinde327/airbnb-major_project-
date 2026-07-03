@@ -14,7 +14,7 @@ const listingSchema = new schema({
   },
   image: {
     url: String,
-    filename: String
+    filename: String,
   },
   price: {
     type: Number,
@@ -35,13 +35,27 @@ const listingSchema = new schema({
   geometry: {
     type: {
       type: String,
-      enum: ['Point'],
-      required: true
+      enum: ["Point"],
+      required: true,
     },
     coordinates: {
       type: [Number],
-      required: true
+      required: true,
     },
+  },
+  category: {
+    type: String,
+    enum: [
+      "Trending",
+      "Rooms",
+      "Iconic Cities",
+      "Mountains",
+      "Amazing Pools",
+      "Camping",
+      "Farms",
+      "Arctic",
+    ],
+    required: true,
   },
 });
 
