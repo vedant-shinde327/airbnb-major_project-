@@ -1,13 +1,12 @@
-const map = new mapboxgl.Map({
-  accessToken: mapToken,
-  container: "map", // container ID
-  center: coordinates, // starting position [lng, lat]. Note that lat must be set between -90 and 90
-  zoom: 9, // starting zoom
-});
+if (coordinates && coordinates.length === 2) {
+  mapboxgl.accessToken = mapToken;
 
-console.log(coordinates);
+  const map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/mapbox/streets-v12",
+    center: coordinates,
+    zoom: 9,
+  });
 
-// Create a default Marker and add it to the map.
-const marker = new mapboxgl.Marker({color: "red"})
-.setLngLat(coordinates)
-.addTo(map);
+  new mapboxgl.Marker({ color: "red" }).setLngLat(coordinates).addTo(map);
+}
