@@ -19,14 +19,14 @@ body {
 }
 
 .nav-logo {
-    width: 55px;
-    height: 55px;
-    object-fit: contain;
-    transition: transform 0.25s ease;
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  transition: transform 0.25s ease;
 }
 
 .navbar-brand:hover .nav-logo {
-    transform: rotate(-15deg) scale(1.08);
+  transform: rotate(-15deg) scale(1.08);
 }
 .nav-link {
   color: #222222 !important;
@@ -270,7 +270,6 @@ body {
 
 /* ---------- Tablets (≤ 992px) ---------- */
 @media (max-width: 992px) {
-
   .navbar {
     height: auto;
     padding: 0.75rem 1rem;
@@ -287,17 +286,36 @@ body {
     max-width: 450px;
   }
 
-  #filters {
-    justify-content: center;
-    gap: 1rem;
-  }
+  @media (max-width: 768px) {
+    #filters {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      overflow-y: hidden;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 8px;
+    }
 
-  .filter {
-    margin: 0;
-  }
+    #filters::-webkit-scrollbar {
+      display: none;
+    }
 
-  .tax-toggle {
-    margin-top: 1rem;
+    #filters > a {
+      display: flex;
+      flex: 0 0 auto;
+    }
+
+    .filter {
+      width: 75px;
+      margin: 0 10px 0 0 !important;
+    }
+
+    .tax-toggle {
+      flex: 0 0 auto;
+      margin-left: 1rem;
+    }
   }
 
   #map {
@@ -306,13 +324,11 @@ body {
   }
 }
 
-
 /* ==========================================================
    BOOTSTRAP RESPONSIVE OVERRIDES
 ========================================================== */
 
 @media (max-width: 768px) {
-
   /* General */
   .container,
   .container-fluid {
@@ -467,7 +483,6 @@ body {
 
 /* Small phones */
 @media (max-width: 480px) {
-
   body {
     font-size: 14px;
   }
@@ -500,5 +515,22 @@ body {
   .tax-toggle {
     font-size: 0.75rem;
     padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .filters-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #filters {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .tax-toggle {
+    margin-top: 10px;
+    width: fit-content;
   }
 }
